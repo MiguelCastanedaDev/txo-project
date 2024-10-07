@@ -1,0 +1,158 @@
+:root{
+  --gray: #405057;
+  --black: #161618;
+  --white: #F3F4F8;
+}
+
+*{
+  font-family: 'Geist';
+}
+
+#app{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+body{
+  background-color: var(--white);
+  height: 95vh;
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 480px;
+  padding: 12px;
+  border: 1px solid var(--gray);
+  border-radius: 4px;
+
+  & h1{
+    font-size: 28px;
+    color: var(--black);
+    margin: 0;
+  }
+
+  & label{
+    color: var(--gray);
+  }
+}
+
+.box{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  flex-wrap: wrap;
+
+  & .box-details{
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+
+    & label{
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    & .box-input{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      gap: 8px;
+    }
+
+    & .box-input-expire{
+      min-width: 14%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      & .box-expire{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        border-radius: 4px;
+        border: 1px solid var(--gray);
+        background-color: var(--white);
+        gap: 2px;
+
+        & input{
+          width: 100%;
+          border: none;
+          text-align: center;
+        }
+
+        & hr{
+          height: auto;
+          border: none;
+          width: 1px;
+          background-color: var(--gray);
+        }
+      }
+    }
+  }
+
+  & label{
+    color: var(--gray);
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  & input{
+    padding: 8px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--gray);
+    background-color: var(--white);
+  }
+  & input:focus {
+    box-shadow: 0 0 0 5px rgba(0, 123, 255, 0.2);
+    outline: none; /* Elimina el borde de enfoque */
+
+    border: 1px solid #007bffb0;
+  }
+
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+
+  & button{
+    padding: 12px 8px;
+    background-color: var(--black);
+    color: var(--white);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  & button:focus{
+    box-shadow: 0 0 0 5px #16161844;
+    outline: none; /* Elimina el borde de enfoque */
+  }
+}
+
+.modal{
+  position: absolute;
+}
+
+.modal::backdrop {
+  filter: blur(50%);
+}
+
+@media (max-width: 500px) {
+  .box-details {
+    flex-wrap: wrap;
+  }
+
+  .box-input-expire{
+    width: 100%;
+  }
+}
