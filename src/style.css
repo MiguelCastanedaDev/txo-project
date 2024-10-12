@@ -4,8 +4,15 @@
   --white: #F3F4F8;
 }
 
+@font-face {
+  font-family: 'Geist-Font';
+  src: url('./assets/font/Geist[wght].woff2') format('woff2');
+  font-weight: normal; 
+  font-style: normal; 
+}
+
 *{
-  font-family: 'Geist';
+  font-family: 'Geist-Font';
 }
 
 #app{
