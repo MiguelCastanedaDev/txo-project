@@ -1,8 +1,10 @@
 import CardService from '../api/CardToken.ts';
 import CallPayment from '../controllers/PaymentController.ts';
 
+const TOKEN = import.meta.env.VITE_KEY_DANIEL;
+
 // Inicializa el servicio con tu API Key
-const cardService = new CardService("Basic YjhhODAxYmMtNDkwNC00ZGJmLWE5MTgtNGFhZTI0NjA1OGVjOmJjM2JjODA2LTdhNTQtNDQ4NS04NzVkLTkyMjE3NGY1NTIwNg=="); // Reemplaza 'api-key' con tu clave API
+const cardService = new CardService(TOKEN); // Reemplaza 'api-key' con tu clave API
 
 // Captura el formulario
 const form = document.getElementById('cardForm') as HTMLFormElement;

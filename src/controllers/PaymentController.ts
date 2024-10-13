@@ -1,12 +1,20 @@
 import Payment from '../api/Payment.ts';
-import GetUserAgent from '../utlis/GetUserAgent.ts';
+import processFullName from '../utils/ControlFullName.ts';
+import GetUserAgent from '../utils/GetUserAgent.ts';
+
+const TOKEN = import.meta.env.VITE_KEY_DANIEL;
+
 
 // Inicializa el servicio con tu API Key
-const payment = new Payment("Basic ODM0ZDI3YWItYzNhOS00OThhLTkxMWYtMzA5ZjczMzJiZDYyOjAxNjZjZWMyLWE3ZjMtNGM3Ni1hOWI2LWJlNjMwNjUxYTNkNw=="); // Reemplaza 'dksdads' con tu clave API
+const payment = new Payment(TOKEN); // Reemplaza 'dksdads' con tu clave API
 const storedUUID = sessionStorage.getItem('session_uuid');
 
 // Maneja el evento de envío del formulario
 export default async function CallPayment(card_token: string, card_holder_name: string) {
+
+    const name = processFullName(card_holder_name);
+
+
     // Obtiene los valores de los inputs
     const amount = parseFloat((document.getElementById('amount') as HTMLInputElement).value);
     const currency = 'MXN'
@@ -17,8 +25,8 @@ export default async function CallPayment(card_token: string, card_holder_name: 
     const customer = {
         email: (document.getElementById('customerEmail') as HTMLInputElement).value,
         phone: (document.getElementById('customerPhone') as HTMLInputElement).value,
-        firstName: card_holder_name,
-        //lastName: (document.getElementById('customerLastName') as HTMLInputElement).value,
+        firstName: name.firstName,
+        lastName: name.lastName,
         address: {
             postalCode: (document.getElementById('postalCode') as HTMLInputElement).value,
             street: (document.getElementById('street') as HTMLInputElement).value,
@@ -36,8 +44,8 @@ export default async function CallPayment(card_token: string, card_holder_name: 
     const prevention_data = {
         customerType: 'returning_buyer',
         submerchantId: 'id 001',
-        customerRiskScore: 15,
-        transactionRiskLevel: 'low',
+        //customerRiskScore: 15,
+        //transactionRiskLevel: 'low',
         deviceFingerPrintToken: String(storedUUID),
         sessionId: String(storedUUID),
         userAgent: GetUserAgent(),

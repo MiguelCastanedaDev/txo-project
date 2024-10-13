@@ -17,7 +17,7 @@ export default class Payment {
         email: string;
         phone: string;
         firstName: string;
-        //lastName: string;
+        lastName: string;
         address: {
           postalCode: string;
           street: string;
@@ -33,8 +33,8 @@ export default class Payment {
       preventionData: {
         customerType: string;
         submerchantId: string;
-        customerRiskScore?: number;
-        transactionRiskLevel?: string;
+        //customerRiskScore?: number;
+        //transactionRiskLevel?: string;
         deviceFingerPrintToken: string;
         sessionId: string;
         userAgent: string;
@@ -82,7 +82,7 @@ export default class Payment {
             email: customer.email,
             phone: customer.phone,
             first_name: customer.firstName,
-            //last_name: customer.lastName,
+            last_name: customer.lastName,
             address: {
               postal_code: customer.address.postalCode,
               street: customer.address.street,
@@ -99,8 +99,8 @@ export default class Payment {
           prevention_data: {
             customer_type: preventionData.customerType,
             submerchant_id: preventionData.submerchantId,
-            customer_risk_score: preventionData.customerRiskScore,
-            transaction_risk_level: preventionData.transactionRiskLevel,
+            //customer_risk_score: preventionData.customerRiskScore,
+            //transaction_risk_level: preventionData.transactionRiskLevel,
             device_finger_print_token: preventionData.deviceFingerPrintToken,
             session_id: preventionData.sessionId,
             user_agent: preventionData.userAgent,
@@ -212,10 +212,12 @@ export default class Payment {
           } else if (data.status === "rejected") {
             let dialog = document.getElementById("3ds-iframe-container") as HTMLDialogElement;
             dialog.showModal();
-            dialog.innerHTML = 
-            `
-              <p>El pago fue declinado</p>
-            `;
+            setTimeout(()=>{
+              dialog.innerHTML = 
+              `
+                <p>El pago fue declinado</p>
+              `;
+            }, 2000)
             console.log("El pago fue declinado");
 
             setTimeout(()=>{
